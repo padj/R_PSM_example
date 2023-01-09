@@ -32,7 +32,6 @@ model_controls <- read_excel(path = paste0(data.loc, 'data.xlsx'),
                              sheet = 'model_controls')
 
 # 1. Construct the data library ####
-
 # Read in data
 data_library <- list()
 data_library$demo <- read_excel(path = paste0(data.loc, 'data.xlsx'), 

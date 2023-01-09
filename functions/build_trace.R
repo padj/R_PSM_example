@@ -1,5 +1,5 @@
 build_trace <- function(){
-  trace <- data.frame(matrix(ncol = 84))
+  trace <- data.frame(matrix(ncol = 86))
   colnames(trace) <- c('Cycle',
                        'Time (Weeks)',
                        'Time (Months)',
@@ -7,8 +7,10 @@ build_trace <- function(){
                        'Discounting (Costs)',
                        'Discounting (Benefits)',				
                        'PFS',
+                       'PD',
                        'OS',
                        'PFS (cohort)',
+                       'PD (cohort)',
                        'OS (cohort)',
                        'Dead (new)',
                        'Dead (ACM)',

@@ -11,6 +11,7 @@ ctrl_trace <- build_trace()
 T <- model_controls$value[model_controls$var_name == 'T']
 t <- model_controls$value[model_controls$var_name == 't']
 T_unit <- model_controls$detail[model_controls$var_name == 'T']
+cohort <- model_controls$value[model_controls$var_name == 'cohort']
 
 for (i in t:T){
   # Calculate the next row in the trace
@@ -43,7 +44,14 @@ for (i in t:T){
   discount_benefit <- 1/(1+model_controls$value[model_controls$var_name == 'benefit_discount'])^T_y
   
   # health state occupancy:
+  PFS <- get_PFS(data_library$trt_PFS, cycle, T_unit)
+  OS <- get_OS(data_library$trt_OS, cycle, T_unit)
+  PD <- OS-PFS
+  PFS_cohort <- PFS*cohort
+  OS_cohort <- OS*cohort
+  PD_cohort <- PD*cohort
   
+  #
   
   new_row_treatment <- data.frame('Cycle' = cycle,
                                   'Time (Weeks)' = T_w,
@@ -51,10 +59,12 @@ for (i in t:T){
                                   'Time (Years)' = T_y,
                                   'Discounting (Costs)' = discount_cost,
                                   'Discounting (Benefits)' = discount_benefit,				
-                                  'PFS',
-                                  'OS',
-                                  'PFS (cohort)',
-                                  'OS (cohort)',
+                                  'PFS' = PFS,
+                                  'PD' = PD,
+                                  'OS' = OS,
+                                  'PFS (cohort)' = PFS_cohort,
+                                  'PD (cohort)' = PD_cohort,
+                                  'OS (cohort)' = OS_cohort,
                                   'Dead (new)',
                                   'Dead (ACM)',
                                   'Dead (total)',
