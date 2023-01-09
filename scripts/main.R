@@ -11,25 +11,50 @@
 # 0. Preamble ####
 
 # Package management
+renv::restore()
 
+library(readxl)
 
 # File management
-
+data.loc <- 'data/'
+func.loc <- 'functions/'
+BCout.loc <- 'outputs/BC_outputs/'
+DSAout.loc <- 'outputs/DSA_outputs/'
+PSAout.loc <- 'outputs/PSA_outputs/'
+script.loc <- 'scripts/'
 
 # Source functions
-
+source(paste0(func.loc, 'source_all.R'))
+source_all(func.loc)
 
 # Define variables
-
+model_controls <- read_excel(path = paste0(data.loc, 'data.xlsx'), 
+                             sheet = 'model_controls')
 
 # 1. Construct the data library ####
 
 # Read in data
-# Construct as table/matrix
-# Add DSA elements (i.e. col to inc in DSA 1/0)
-# Add in PSA elements (se, dist)
+data_library <- list()
+data_library$demo <- read_excel(path = paste0(data.loc, 'data.xlsx'), 
+                                sheet = 'demo')
+data_library$costs <- read_excel(path = paste0(data.loc, 'data.xlsx'), 
+                                 sheet = 'costs')
+data_library$ae <- read_excel(path = paste0(data.loc, 'data.xlsx'), 
+                              sheet = 'ae')
+data_library$utils <- read_excel(path = paste0(data.loc, 'data.xlsx'),
+                                 sheet = 'utils')
 
-# Write out initial_data.csv
+# Read in life tables
+data_library$life_table <- read_excel(path = paste0(data.loc, 'life_table.xlsx'))
+
+# Read in utility tables
+data_library$util_table <- read_excel(path = paste0(data.loc, 'util_table.xlsx'))
+
+# Read in survival data
+data_library$trt_PFS <- read_excel(path = paste0(data.loc, 'trt_PFS.xlsx'))
+data_library$trt_OS <- read_excel(path = paste0(data.loc, 'trt_OS.xlsx'))
+data_library$ctrl_PFS <- read_excel(path = paste0(data.loc, 'ctrl_PFS.xlsx'))
+data_library$ctrl_OS <- read_excel(path = paste0(data.loc, 'ctrl_OS.xlsx'))
 
 
 # 2. Base case ####
