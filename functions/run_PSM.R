@@ -13,6 +13,7 @@ t <- model_controls$value[model_controls$var_name == 't']
 T_unit <- model_controls$detail[model_controls$var_name == 'T']
 cohort <- model_controls$value[model_controls$var_name == 'cohort']
 
+# Populate the control trace
 for (i in t:T){
   # Calculate the next row in the trace
   
@@ -44,14 +45,25 @@ for (i in t:T){
   discount_benefit <- 1/(1+model_controls$value[model_controls$var_name == 'benefit_discount'])^T_y
   
   # health state occupancy:
-  PFS <- get_PFS(data_library$trt_PFS, cycle, T_unit)
-  OS <- get_OS(data_library$trt_OS, cycle, T_unit)
-  PD <- OS-PFS
-  PFS_cohort <- PFS*cohort
-  OS_cohort <- OS*cohort
-  PD_cohort <- PD*cohort
+  ctrl_PFS <- get_PFS(data_library$trt_PFS, cycle, T_unit)
+  ctrl_OS <- get_OS(data_library$trt_OS, cycle, T_unit)
+  ctrl_PD <- OS-PFS
+  ctrl_PFS_cohort <- ctrl_PFS*cohort
+  ctrl_OS_cohort <- ctrl_OS*cohort
+  ctrl_PD_cohort <- ctrl_PD*cohort
+  #ctrl_dead_new <-
+  #ctrl_dead_acm <- 
+  #ctrl_dead_total <- 
   
-  #
+  # AE occurrences 
+  
+  
+  # costs
+  PFS_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_PFS']*ctrl_PFS_cohort
+  PD_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_PD']*ctrl_PD_cohort
+  death_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_death']*ctrl_dead_new
+  #treat_cost <- 
+  
   
   new_row_treatment <- data.frame('Cycle' = cycle,
                                   'Time (Weeks)' = T_w,
@@ -59,12 +71,12 @@ for (i in t:T){
                                   'Time (Years)' = T_y,
                                   'Discounting (Costs)' = discount_cost,
                                   'Discounting (Benefits)' = discount_benefit,				
-                                  'PFS' = PFS,
-                                  'PD' = PD,
-                                  'OS' = OS,
-                                  'PFS (cohort)' = PFS_cohort,
-                                  'PD (cohort)' = PD_cohort,
-                                  'OS (cohort)' = OS_cohort,
+                                  'PFS' = ctrl_PFS,
+                                  'PD' = ctrl_PD,
+                                  'OS' = ctrl_OS,
+                                  'PFS (cohort)' = ctrl_PFS_cohort,
+                                  'PD (cohort)' = ctrl_PD_cohort,
+                                  'OS (cohort)' = ctrl_OS_cohort,
                                   'Dead (new)',
                                   'Dead (ACM)',
                                   'Dead (total)',
