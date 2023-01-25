@@ -55,7 +55,68 @@ run_PSM <- function(data_library,
     #ctrl_dead_acm <- 
     #ctrl_dead_total <- 
     
+    # health state costs:
+    # 'PFS utility (undiscounted)',
+    # 'PD utility (undiscounted)',
+    
     # AE occurrences 
+    ctrl_AE1 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE1'] * ctrl_OS_cohort
+    ctrl_AE2 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE2'] * ctrl_OS_cohort
+    ctrl_AE3 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE3'] * ctrl_OS_cohort
+    ctrl_AE4 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE4'] * ctrl_OS_cohort	
+    ctrl_AE5 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE5'] * ctrl_OS_cohort
+    ctrl_AE6 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE6'] * ctrl_OS_cohort	
+    ctrl_AE7 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE7'] * ctrl_OS_cohort	
+    ctrl_AE8 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE8'] * ctrl_OS_cohort	
+    ctrl_AE9 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE9'] * ctrl_OS_cohort
+    ctrl_AE10 <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_prob_AE10'] * ctrl_OS_cohort
+    
+    # AE costs
+    ctrl_AE1_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE1'] * ctrl_AE1
+    ctrl_AE2_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE2'] * ctrl_AE2
+    ctrl_AE3_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE3'] * ctrl_AE3
+    ctrl_AE4_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE4'] * ctrl_AE4	
+    ctrl_AE5_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE5'] * ctrl_AE5
+    ctrl_AE6_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE6'] * ctrl_AE6	
+    ctrl_AE7_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE7'] * ctrl_AE7	
+    ctrl_AE8_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE8'] * ctrl_AE8	
+    ctrl_AE9_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE9'] * ctrl_AE9
+    ctrl_AE10_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE10'] * ctrl_AE10
+    ctrl_AE_total_cost <- (ctrl_AE1_cost + ctrl_AE2_cost + ctrl_AE3_cost +
+                          ctrl_AE4_cost + ctrl_AE5_cost + ctrl_AE6_cost +
+                          ctrl_AE7_cost + ctrl_AE8_cost + ctrl_AE9_cost + 
+                          ctrl_AE10_cost)
+
+    'Age utility (undiscounted)',
+    'AE1 utility (undiscounted)',
+    'AE2 utility (undiscounted)',
+    'AE3 utility (undiscounted)',
+    'AE4 utility (undiscounted)',
+    'AE5 utility (undiscounted)',
+    'AE6 utility (undiscounted)',
+    'AE7 utility (undiscounted)',
+    'AE8 utility (undiscounted)',
+    'AE9 utility (undiscounted)',
+    'AE10 utility (undiscounted)',
+    'Total AE utility (undiscounted)',
+    'PFS utility (discounted)',
+    'PD utility (discounted)',
+    'Age utility (discounted)',
+    'AE1 utility (discounted)',
+    'AE2 utility (discounted)',
+    'AE3 utility (discounted)',
+    'AE4 utility (discounted)',
+    'AE5 utility (discounted)',
+    'AE6 utility (discounted)',
+    'AE7 utility (discounted)',
+    'AE8 utility (discounted)',
+    'AE9 utility (discounted)',
+    'AE10 utility (discounted)',
+    'Total AE utility (discounted)',
+    'Life years',
+    'Total QALY (undiscounted)',
+    'Total QALY (discounted)'
+    
     
     
     # costs
