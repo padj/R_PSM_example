@@ -1,5 +1,5 @@
-get_PFS <- function(surv_data, time, T_unit){
-  # Gets PFS from the survival data
+get_OS <- function(surv_data, time, T_unit){
+  # Gets OS from the survival data
   if (T_unit == 'weeks'){
     OS <- surv_data$S[PFS$time_weeks == time]
     
