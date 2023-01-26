@@ -56,6 +56,12 @@ run_PSM <- function(data_library,
     #ctrl_dead_total <- 
     
     # health state costs:
+    PFS_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_PFS']*ctrl_PFS_cohort
+    PD_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_PD']*ctrl_PD_cohort
+    death_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_death']*ctrl_dead_new
+    
+    # health state utilities
+    # age related utility
     # 'PFS utility (undiscounted)',
     # 'PD utility (undiscounted)',
     
@@ -83,36 +89,29 @@ run_PSM <- function(data_library,
     ctrl_AE9_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE9'] * ctrl_AE9
     ctrl_AE10_cost <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_cost_AE10'] * ctrl_AE10
     ctrl_AE_total_cost <- (ctrl_AE1_cost + ctrl_AE2_cost + ctrl_AE3_cost +
-                          ctrl_AE4_cost + ctrl_AE5_cost + ctrl_AE6_cost +
-                          ctrl_AE7_cost + ctrl_AE8_cost + ctrl_AE9_cost + 
-                          ctrl_AE10_cost)
-
-    'Age utility (undiscounted)',
-    'AE1 utility (undiscounted)',
-    'AE2 utility (undiscounted)',
-    'AE3 utility (undiscounted)',
-    'AE4 utility (undiscounted)',
-    'AE5 utility (undiscounted)',
-    'AE6 utility (undiscounted)',
-    'AE7 utility (undiscounted)',
-    'AE8 utility (undiscounted)',
-    'AE9 utility (undiscounted)',
-    'AE10 utility (undiscounted)',
-    'Total AE utility (undiscounted)',
-    'PFS utility (discounted)',
-    'PD utility (discounted)',
-    'Age utility (discounted)',
-    'AE1 utility (discounted)',
-    'AE2 utility (discounted)',
-    'AE3 utility (discounted)',
-    'AE4 utility (discounted)',
-    'AE5 utility (discounted)',
-    'AE6 utility (discounted)',
-    'AE7 utility (discounted)',
-    'AE8 utility (discounted)',
-    'AE9 utility (discounted)',
-    'AE10 utility (discounted)',
-    'Total AE utility (discounted)',
+                           ctrl_AE4_cost + ctrl_AE5_cost + ctrl_AE6_cost +
+                           ctrl_AE7_cost + ctrl_AE8_cost + ctrl_AE9_cost + 
+                           ctrl_AE10_cost)
+    
+    # AE utilities
+    ctrl_AE1_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE1'] * ctrl_AE1
+    ctrl_AE2_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE2'] * ctrl_AE2
+    ctrl_AE3_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE3'] * ctrl_AE3
+    ctrl_AE4_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE4'] * ctrl_AE4
+    ctrl_AE5_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE5'] * ctrl_AE5
+    ctrl_AE6_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE6'] * ctrl_AE6
+    ctrl_AE7_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE7'] * ctrl_AE7
+    ctrl_AE8_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE8'] * ctrl_AE8
+    ctrl_AE9_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE9'] * ctrl_AE9
+    ctrl_AE10_disutil <- data_library$ae$mean[data_library$ae$var_name == 'ctrl_disutil_AE10'] * ctrl_AE10
+    ctrl_AE_total_disutil <- (ctrl_AE1_disutil + ctrl_AE2_disutil + ctrl_AE3_disutil +
+                              ctrl_AE4_disutil + ctrl_AE5_disutil + ctrl_AE6_disutil +
+                              ctrl_AE7_disutil + ctrl_AE8_disutil + ctrl_AE9_disutil + 
+                              ctrl_AE10_disutil)
+    
+    # 
+    
+    
     'Life years',
     'Total QALY (undiscounted)',
     'Total QALY (discounted)'
@@ -120,9 +119,7 @@ run_PSM <- function(data_library,
     
     
     # costs
-    PFS_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_PFS']*ctrl_PFS_cohort
-    PD_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_PD']*ctrl_PD_cohort
-    death_cost <- data_library$costs$mean[data_library$costs$var_name == 'cost_death']*ctrl_dead_new
+    
     #treat_cost <- 
     
     
