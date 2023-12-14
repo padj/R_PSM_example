@@ -57,6 +57,10 @@ data_library$ctrl_OS <- read_excel(path = paste0(data.loc, 'ctrl_OS.xlsx'))
 
 
 # 2. Base case ####
+run_PSM(data_library = data_library,
+        model_controls = model_controls,
+        abridged = F)
+        
 
 # Call run_PSM(abridged=FALSE)
 #   input data_library
